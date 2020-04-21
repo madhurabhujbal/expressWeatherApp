@@ -2,10 +2,14 @@ const axios = require('axios');
 const {MongoClient} = require('mongodb');
 
 let currentDate = new Date();
-let day = currentDate.getDate();
-let month = currentDate.getMonth();
-let year = currentDate.getUTCFullYear();
-let timestamp = day + '' + ('0' + (month + 1)) + '' + year;
+
+function getTimestamp(){
+    let timestamp = currentDate.getDate() + ''
+                    + ('0' + (currentDate.getMonth() + 1)).slice(-2)
+                    + '' + currentDate.getUTCFullYear();
+    return timestamp;
+}
+
 let city = 'London';
 let weatherInfo;
 
@@ -22,7 +26,7 @@ const url = 'mongodb://localhost:27017';
         conn = await MongoClient.connect(url, {useUnifiedTopology: true});
         const db = conn.db('WeatherApp');
         const collection = db.collection('weatherData');
-        const result = await collection.findOne({"city" : city, "date" : timestamp});
+        const result = await collection.findOne({"city" : city, "date" : getTimestamp()});
 
         if(result){
             console.log('Retrieving from database');
