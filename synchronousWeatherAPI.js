@@ -1,16 +1,12 @@
 const axios = require('axios');
 const {MongoClient} = require('mongodb');
 
-//create database
-const url = 'mongodb://localhost:27017';
-const db = db('WeatherApp');
-const collection = db.collection('weatherData');
-
 //establish connection
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect('mongodb://localhost:27017', function(err, conn) {
     if (err) throw err;
-    console.log('database created');
-    db.close();
+    dbRef = conn.db('WeatherApp');
+    collRef = dbRef.collection('weatherData');
+    conn.close();
 });
 //connect to database
 //close connection
