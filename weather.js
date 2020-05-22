@@ -35,8 +35,11 @@ const url = 'mongodb://localhost:27017';
             console.log('Retrieving from web');
             let response = await getOnlineInfo();
             weatherInfo = response.data;
+            //store weather information in db
+           await collection.insertOne({'city': city,  "date" : getTimestamp(), 'data': weatherInfo});
         }
         console.log(weatherInfo);
+
     } catch (error) {
         console.log('Error: ' + error);
     }
