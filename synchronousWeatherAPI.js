@@ -1,9 +1,14 @@
 const axios = require('axios');
 const {MongoClient} = require('mongodb');
 
-
 function getTimeStamp() {
-    return "20200523";
+    let currentDate = new Date();
+    let date = ('0' + currentDate.getDate()).slice(-2);
+    let month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
+    let year = '' + currentDate.getFullYear();
+
+    let timeStamp = year + month + date;
+    return timeStamp;
 }
 
 function getWeatherInfo(cityName) {
@@ -29,4 +34,4 @@ function getWeatherInfo(cityName) {
     }());
 }
 
-module.exports = getWeatherInfo;
+module.exports = {getWeatherInfo, getTimeStamp};
