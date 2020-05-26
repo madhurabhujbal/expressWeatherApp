@@ -8,9 +8,13 @@ app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
+    res.render('index');
+});
+
+app.get('/weather', (req, res) => {
     let city = req.query.City;
-    let weather = getWeatherInfo(city);
-    res.render('index', {weatherInfo : weather});
+    console.log(city);
+    res.send(city);
 });
 
 app.listen(3000, () => {
