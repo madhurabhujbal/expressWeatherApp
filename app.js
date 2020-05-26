@@ -1,14 +1,16 @@
 const express = require('express');
 const axios = require('axios');
 const {MongoClient} = require('mongodb');
-const {getWeatherInfo, getTimeStamp} = require('./synchronousWeatherAPI');
+const {getWeatherInfo} = require('./synchronousWeatherAPI');
 
 const app = express();
 app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index');
+    let city = req.query.City;
+    let weather = getWeatherInfo(city);
+    res.render('index', {weatherInfo : weather});
 });
 
 app.listen(3000, () => {
