@@ -1,5 +1,5 @@
 const {getWeatherInfo, getTimeStamp} = require('./synchronousWeatherAPI');
 
-//let data = getWeatherInfo('Mumbai');
-let date = getTimeStamp();
-console.log(date);
+let data = getWeatherInfo('Goa');
+// let date = getTimeStamp();
+// console.log(date);
