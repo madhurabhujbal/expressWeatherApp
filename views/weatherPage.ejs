@@ -9,14 +9,21 @@
         <div class="container">
             <div class="jumbotron">
                 <h3> City Weather : </h3><br>
-                <form>
+                    <div class="row">
+                        <label class="col-sm-2 form-control-plaintext"> Date: </label>
+                        <div class="col-sm-4">
+                            <label class="col-sm-2 form-control-plaintext"> <%= date %> </label>
+                        </div>
+                    </div>
+                    <br>
+
                     <div class="row">
                         <label class="col-sm-2 form-control-plaintext"> City : </label>
                         <div class="col-sm-4">
                             <label class="col-sm-2 form-control-plaintext"> <%= city %> </label>
                         </div>
                     </div>
-                </form>
+                    <br>
             </div>
         </div>
     </body>

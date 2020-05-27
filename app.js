@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const {MongoClient} = require('mongodb');
-const {getWeatherInfo} = require('./synchronousWeatherAPI');
+const {getWeatherInfo, getTimeStamp} = require('./synchronousWeatherAPI');
 
 const app = express();
 app.set('views', __dirname + '/views/');
@@ -13,7 +13,8 @@ app.get('/', (req, res) => {
 
 app.get('/weather', (req, res) => {
     let city = req.query.City;
-    res.render('weatherPage', {city : city} );
+    let currentDate = getTimeStamp();
+    res.render('weatherPage', {city : city, date : currentDate} );
 });
 
 app.listen(3000, () => {

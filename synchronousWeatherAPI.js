@@ -7,7 +7,7 @@ function getTimeStamp() {
     let month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
     let year = '' + currentDate.getFullYear();
 
-    let timeStamp = year + month + date;
+    let timeStamp = year + '/' + month + '/' + date;
     return timeStamp;
 }
 
