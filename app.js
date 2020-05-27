@@ -13,8 +13,7 @@ app.get('/', (req, res) => {
 
 app.get('/weather', (req, res) => {
     let city = req.query.City;
-    console.log(city);
-    res.send(city);
+    res.render('weatherPage', {city : city} );
 });
 
 app.listen(3000, () => {
