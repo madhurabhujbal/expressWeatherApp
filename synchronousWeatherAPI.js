@@ -11,7 +11,7 @@ function getTimeStamp() {
     return timeStamp;
 }
 
-function getWeatherInfo(cityName) {
+function getWeatherInfo(cityName, foo, res, currentDate) {
     let weatherInfo = null;
     //establish connection
     (async function () {
@@ -29,9 +29,10 @@ function getWeatherInfo(cityName) {
             }
         //close connection
         conn.close();
-        console.log(weatherInfo.data);
-        return weatherInfo.data;
+        foo(weatherInfo.data.main.temp);
+        res.render('weatherPage', {city : cityName, date : currentDate, weatherData : weatherInfo.data.main.temp});
     }());
+    //
 }
 
 module.exports = {getWeatherInfo, getTimeStamp};
