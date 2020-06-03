@@ -11,6 +11,11 @@ function getTimeStamp() {
     return timeStamp;
 }
 
+function getTempInCentigrade(tempInKelvin) {
+    let tempInCentigrade = ("" + (tempInKelvin - 273.15)).slice(0,5) + "°C";
+    return tempInCentigrade;
+}
+
 function getWeatherInfo(cityName, res, currentDate) {
     let weatherInfo = null;
     //establish connection
@@ -33,7 +38,7 @@ function getWeatherInfo(cityName, res, currentDate) {
         //close connection
         conn.close();
         console.log(weatherInfo.data);
-        res.render('weatherPage', {city : cityName, date : currentDate, weatherData : weatherInfo.data.main.temp});
+        res.render('weatherPage', {city : cityName, date : currentDate, weatherData : getTempInCentigrade(weatherInfo.data.main.temp)});
     }());
     //
 }
