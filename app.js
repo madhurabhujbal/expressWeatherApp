@@ -8,18 +8,19 @@ app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {errMsg : ''});
 });
 
-function foo(result) {
-    console.log(result);
-}
 app.get('/weather', (req, res) => {
     let cityName = req.query.City;
+    let err = "Please enter a city";
+    if(cityName.length == 0) {
+        res.render('index', {errMsg : err});
+        return;
+    }
+
     let currentDate = getTimeStamp();
-    let weatherInformation = getWeatherInfo(cityName, foo, res, currentDate);
-    console.log("Weather Information : ");
-    console.log(weatherInformation);
+    let weatherInformation = getWeatherInfo(cityName, res, currentDate);
 
 //     (async function weather() {
 //         let conn = await MongoClient.connect('mongodb://localhost:27017');
