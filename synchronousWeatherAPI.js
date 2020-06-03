@@ -20,9 +20,9 @@ function getWeatherInfo(cityName, res, currentDate) {
         dbRef = conn.db('WeatherApp');
         collRef = dbRef.collection('weatherData');
         weatherInfo = await collRef.findOne({"city" : cityName});
-        // if(weatherInfo.date != currentDate) {
-        //     await collRef.deleteOne({"city" : cityName});
-        // }
+        if(weatherInfo.date != currentDate) {
+            await collRef.deleteMany({"city" : cityName});
+        }
         if(weatherInfo != null && weatherInfo.date == currentDate ) {
             console.log("Retrieving data from database : ");
         } else {
