@@ -22,11 +22,13 @@
                 <br>
                 </form>
 
+                <% if (locals.errMsg) { %>
                 <div class="row">
                         <label class="col-sm-2 form-control-plaintext"> <%= errMsg %> </label>
                     </div>
                 </div>
                 <br>
+                <% } %>
             </div>
         </div>
     </body>
