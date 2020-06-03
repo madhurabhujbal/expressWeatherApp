@@ -11,7 +11,7 @@ function getTimeStamp() {
     return timeStamp;
 }
 
-function getWeatherInfo(cityName, foo, res, currentDate) {
+function getWeatherInfo(cityName, res, currentDate) {
     let weatherInfo = null;
     //establish connection
     (async function () {
@@ -20,7 +20,10 @@ function getWeatherInfo(cityName, foo, res, currentDate) {
         dbRef = conn.db('WeatherApp');
         collRef = dbRef.collection('weatherData');
         weatherInfo = await collRef.findOne({"city" : cityName});
-        if(weatherInfo != null) {
+        // if(weatherInfo.date != currentDate) {
+        //     await collRef.deleteOne({"city" : cityName});
+        // }
+        if(weatherInfo != null && weatherInfo.date == currentDate ) {
             console.log("Retrieving data from database : ");
         } else {
                 console.log("Retrieving data from website : ");
@@ -29,7 +32,7 @@ function getWeatherInfo(cityName, foo, res, currentDate) {
             }
         //close connection
         conn.close();
-        foo(weatherInfo.data.main.temp);
+        console.log(weatherInfo.data);
         res.render('weatherPage', {city : cityName, date : currentDate, weatherData : weatherInfo.data.main.temp});
     }());
     //
