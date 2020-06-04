@@ -8,10 +8,18 @@
     <body>
         <div class="container">
             <div class="jumbotron">
-                <h3>By clicking the 'Clean up' button, all old records in database will be deleted.</h3>
+                <h4>By clicking the 'Clean up' button, all old records in database will be deleted.</h4>
+                <br>
                 <form action="/admin/cleanup" method="GET">
                     <input type="submit" value="Clean up">
                 </form>
+
+                <% if (locals.recordNumber) { %>
+                    <div class="row">
+                        <div class="col-sm-3"> Number of records deleted : <%= recordNumber%>
+                        </div>
+                    </div>
+                <% } %>
             </div>
         </div>
     </body>
