@@ -28,7 +28,7 @@ app.get('/admin', (req, res) => {
 });
 
 app.get('/admin/cleanup', (req, res) => {
-    let deletedRecordCount = deleteOldRecords();
+    deleteOldRecords(res);
 });
 
 app.listen(3000, () => {
