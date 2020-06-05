@@ -11,11 +11,11 @@ function deleteOldRecords(res) {
         let dbRef = conn.db('WeatherApp');
         let coll = dbRef.collection('weatherData');
         //delete old records
-        //let queryResult = await coll.deleteMany({"date": {$lt: currentDate}});
+        let queryResult = await coll.deleteMany({"date": {$lt: currentDate}});
         //close connection
         conn.close();
-        //console.log(queryResult.deletedCount);
-        res.render('adminPage', {recordNumber: 10});
+        console.log(queryResult.deletedCount);
+        res.render('adminPage', {recordNumber: queryResult.deletedCount});
     }());
 }
 
