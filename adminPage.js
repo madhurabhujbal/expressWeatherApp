@@ -4,6 +4,7 @@ const {getTimeStamp} = require('./synchronousWeatherAPI');
 
 function deleteOldRecords(res) {
     let currentDate = getTimeStamp();
+    let queryResult;
 //establish connection to database
     (async function() {
         let url = 'mongodb://localhost:27017';
@@ -12,14 +13,14 @@ function deleteOldRecords(res) {
             let dbRef = conn.db('WeatherApp');
             let coll = dbRef.collection('weatherData');
             //delete old records
-            let queryResult = await coll.deleteMany({"date": {$lt: currentDate}});
+            queryResult = await coll.deleteMany({"date": {$lt: currentDate}});
         } catch (err) {
             console.log(err);
         }
         //close connection
         conn.close();
-        console.log(queryResult.deletedCount);
-        res.render('adminPage', {recordNumber: queryResult.deletedCount});
+        let recordNumber = "" + queryResult.deletedCount;
+        res.render('adminPage', {recordNumber});
     }());
 }
 
