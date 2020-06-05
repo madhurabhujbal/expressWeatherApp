@@ -36,10 +36,12 @@ function getWeatherInfo(cityName, res, currentDate) {
         }
         catch(err) {
             console.log(err);
+            // could not retrieve from web
+            res.render('index', {errMsg : "could not retrieve from web"});
         }
         //close connection
         conn.close();
-        console.log(weatherInfo.data);
+        console.log(cityName + " : " + weatherInfo.data.main.temp);
         res.render('weatherPage', {city : cityName, date : currentDate, weatherData : getTempInCentigrade(weatherInfo.data.main.temp)});
     }());
     //
