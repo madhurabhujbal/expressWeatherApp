@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
+const path = require('path');
 const {MongoClient} = require('mongodb');
+
 const {getWeatherInfo, getTimeStamp} = require('./synchronousWeatherAPI');
 const deleteOldRecords = require('./adminPage');
 
@@ -8,6 +10,7 @@ const app = express();
 app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 app.set('view engine', 'pug');
+app.use(express.static(path.join(__dirname, '/public/')));
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
@@ -33,7 +36,7 @@ app.get('/admin/cleanup', (req, res) => {
 });
 
 
-app.get('/index.pug', (req, res) => {
+app.get('/pug', (req, res) => {
     res.render('index.pug');
 });
 
