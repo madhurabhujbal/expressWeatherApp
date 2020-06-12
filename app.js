@@ -34,7 +34,7 @@ app.get('/admin/cleanup', (req, res) => {
 
 
 app.get('/index.pug', (req, res) => {
-    res.send('hello world');
+    res.render('index.pug');
 });
 
 app.listen(3000, () => {
