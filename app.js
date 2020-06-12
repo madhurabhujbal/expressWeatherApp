@@ -9,14 +9,14 @@ app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index.ejs');
 });
 
 app.get('/weather', (req, res) => {
     let cityName = req.query.City;
     let err = "Please enter a city";
     if(cityName.length == 0) {
-        res.render('index', {errMsg : err});
+        res.render('index.ejs', {errMsg : err});
         return;
     }
     let currentDate = getTimeStamp();
@@ -24,7 +24,7 @@ app.get('/weather', (req, res) => {
 });
 
 app.get('/admin', (req, res) => {
-    res.render('adminPage');
+    res.render('adminPage.ejs');
 });
 
 app.get('/admin/cleanup', (req, res) => {

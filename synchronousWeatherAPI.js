@@ -42,7 +42,7 @@ function getWeatherInfo(cityName, res, currentDate) {
         //close connection
         conn.close();
         console.log(cityName + " : " + weatherInfo.data.main.temp);
-        res.render('weatherPage', {city : cityName, date : currentDate, weatherData : getTempInCentigrade(weatherInfo.data.main.temp)});
+        res.render('weatherPage.ejs', {city : cityName, date : currentDate, weatherData : getTempInCentigrade(weatherInfo.data.main.temp)});
     }());
     //
 }

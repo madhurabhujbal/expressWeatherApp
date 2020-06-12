@@ -20,7 +20,7 @@ function deleteOldRecords(res) {
         //close connection
         conn.close();
         let recordNumber = "" + queryResult.deletedCount;
-        res.render('adminPage', {recordNumber});
+        res.render('adminPage.ejs', {recordNumber});
     }());
 }
 
