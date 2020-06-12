@@ -7,6 +7,7 @@ const deleteOldRecords = require('./adminPage');
 const app = express();
 app.set('views', __dirname + '/views/');
 app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 app.get('/', (req, res) => {
     res.render('index.ejs');
@@ -29,6 +30,11 @@ app.get('/admin', (req, res) => {
 
 app.get('/admin/cleanup', (req, res) => {
     deleteOldRecords(res);
+});
+
+
+app.get('/index.pug', (req, res) => {
+    res.send('hello world');
 });
 
 app.listen(3000, () => {
