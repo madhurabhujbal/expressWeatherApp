@@ -3,20 +3,20 @@ html
     head
         style
             include ../public/css/style.css
-body
-.jumbotron
-    .container
-        form(action='/weatherPage' method='GET')
-            br
-            br
-            br
-            div.row
-                div.col-sm-3
-                    p(style="text-align:center;") Enter city :
-                div.col-sm-2
-                    input(col type="text" autofocus)
-            br
-            br
-            br
-            p(style="text-align:center;")
-                input(style="text-align:center" value='Submit', type='submit')
+    body
+    .jumbotron
+        .container
+            form(action='/weatherPage' method='GET')
+                br
+                br
+                br
+                div.row
+                    div.col-sm-3
+                        p(style="text-align:center;") Enter city :
+                    div.col-sm-2
+                        input(col type="text" name="City" autofocus)
+                br
+                br
+                br
+                p(style="text-align:center;")
+                    input(style="text-align:center" value='Submit', type='submit')
