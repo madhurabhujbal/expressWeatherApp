@@ -11,12 +11,18 @@ function getTimeStamp() {
     return timeStamp;
 }
 
+function getDayOfWeek() {
+    let today= new Date();
+    const daysOfWeek = ['Sunday', 'Monday','Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return daysOfWeek[today.getDay()]
+}
+
 function getTempInCentigrade(tempInKelvin) {
     let tempInCentigrade = ("" + (tempInKelvin - 273.15)).slice(0,5) + "°C";
     return tempInCentigrade;
 }
 
-function getWeatherInfo(cityName, res, currentDate) {
+function getWeatherInfo(view, cityName, res, currentDate) {
     let weatherInfo = null;
     //establish connection
     (async function () {
@@ -42,7 +48,11 @@ function getWeatherInfo(cityName, res, currentDate) {
         //close connection
         conn.close();
         console.log(cityName + " : " + weatherInfo.data.main.temp);
-        res.render('weatherPage.ejs', {city : cityName, date : currentDate, weatherData : getTempInCentigrade(weatherInfo.data.main.temp)});
+        console.log(weatherInfo.data);
+        //res.render('weatherPage.ejs', {city : cityName, date : currentDate, weatherData : getTempInCentigrade(weatherInfo.data.main.temp)});
+        res.render(view, {city : cityName, country : weatherInfo.data.sys.country, date : currentDate,
+                          today : getDayOfWeek(), weatherData : getTempInCentigrade(weatherInfo.data.main.temp),
+                          humidity : weatherInfo.data.main.humidity, wind : weatherInfo.data.wind.speed});
     }());
     //
 }
