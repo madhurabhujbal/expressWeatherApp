@@ -3,7 +3,7 @@ const axios = require('axios');
 const path = require('path');
 const {MongoClient} = require('mongodb');
 
-const {getWeatherInfo, getTimeStamp} = require('./synchronousWeatherAPI');
+const {getWeatherInfo, getTimeStamp, getDayOfWeek} = require('./synchronousWeatherAPI');
 const deleteOldRecords = require('./adminPage');
 
 const app = express();
@@ -24,7 +24,7 @@ app.get('/weather', (req, res) => {
         return;
     }
     let currentDate = getTimeStamp();
-    let weatherInformation = getWeatherInfo(cityName, res, currentDate);
+    let weatherInformation = getWeatherInfo('weatherPage.ejs', cityName, res, currentDate);
 });
 
 app.get('/admin', (req, res) => {
@@ -35,13 +35,14 @@ app.get('/admin/cleanup', (req, res) => {
     deleteOldRecords(res);
 });
 
-
 app.get('/pug', (req, res) => {
     res.render('index.pug');
 });
 
 app.get('/weatherPage', (req, res) => {
-    res.render('weatherPage.pug');
+    let cityName = req.query.City;
+    let currentDate = getTimeStamp();
+    let weatherInformation = getWeatherInfo('weatherPage.pug', cityName, res, currentDate);
 });
 
 app.listen(3000, () => {
