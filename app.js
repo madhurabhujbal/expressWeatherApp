@@ -40,6 +40,10 @@ app.get('/pug', (req, res) => {
     res.render('index.pug');
 });
 
+app.get('/weatherPage', (req, res) => {
+    res.render('weatherPage.pug');
+});
+
 app.listen(3000, () => {
     console.log('Server listening on port 3000');
 });
