@@ -5,6 +5,7 @@ const {MongoClient} = require('mongodb');
 
 const {getWeatherInfo, getTimeStamp, getDayOfWeek} = require('./synchronousWeatherAPI');
 const deleteOldRecords = require('./adminPage');
+const { Console } = require('console');
 
 const app = express();
 app.set('views', __dirname + '/views/');
